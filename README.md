@@ -32,4 +32,5 @@ Then used facebook's fastText trained vectors for generating word embeddings for
 The final word embedding of a sentence was a Tf-Idf weighted average of most occuring words where no. of words to be selected for each corpus was proportional to its distribution in dataset.
 Finally after getting the word vectors Trained a Deep Neural Network using Tensorflow with the architecture
 (input - 2000 - 2000 - 2000 - 1000 - n_class )
-The loss fin
+The loss function used is weighted cross entropy as there was quite an imbalance in the class distribution.
+Finally it is optimized using rmsprop optimizer and the weighted recall score obtained on hackerearth on the submission script was 0.81.

@@ -24,13 +24,15 @@ Consumer-disputes - If the consumer raised any disputes
 
 
 Approach - 
-First of all, detected all languages using python's langdetect package.
+
+First of all, obtained importance of different features using sklearn's ExtraTreesClassifier. The numbers were not satisfying.
+Then started with Complaint summary - firstly detected all languages using python's langdetect package.
 Cleaned the text using standard nlp techniques i.e expanding contractions, punctuation removal, Lemmatization etc. For stopwords removal made a set of stopwords of all the used languages i.e English, Spanish and French. 
 
 Created a separate dictionary for each language with the key as index and value as text content.
 Then used facebook's fastText trained vectors for generating word embeddings for French and Spanish and GloVe for English.
 The final word embedding of a sentence was a Tf-Idf weighted average of most occuring words where no. of words to be selected for each corpus was proportional to its distribution in dataset.
-Finally after getting the word vectors Trained a Deep Neural Network using Tensorflow with the architecture
+Finally after getting the word vectors Trained a separate Deep Neural Network for each language using Tensorflow with the architecture
 (input - 2000 - 2000 - 2000 - 1000 - n_class )
 The loss function used is weighted cross entropy as there was quite an imbalance in the class distribution.
 Finally it is optimized using rmsprop optimizer and the weighted recall score obtained on hackerearth on the submission script was 0.81.
